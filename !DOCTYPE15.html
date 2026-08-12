@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Presidency University - Professional & Animated</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Classic & Professional Color Palette */
+        :root {
+            --bg: #0b1120; 
+            --text: #f8fafc;
+            --blue: #004d7a;
+            --light-blue: #38bdf8; 
+            --orange: #f59e0b; 
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --grid-color: rgba(56, 189, 248, 0.15);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc; 
+            --text: #0f172a; 
+            --blue: #00629B; 
+            --light-blue: #0284c7; 
+            --orange: #ea580c; 
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border: rgba(0, 98, 155, 0.15);
+            --shadow: 0 10px 30px rgba(0, 98, 155, 0.15);
+            --grid-color: rgba(0, 98, 155, 0.1);
+        }
+
+        body, html { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; transition: background 0.5s, color 0.5s; perspective: 1000px; }
+
+        /* "By Manish" Tag */
+        #author-tag {
+            position: fixed; top: 20px; right: 30px; z-index: 10000;
+            font-size: 1.2rem; color: var(--text);
+            letter-spacing: 2px; font-weight: 700; 
+            border: 2px solid var(--border); padding: 5px 15px; border-radius: 8px;
+            background: var(--card-bg); backdrop-filter: blur(10px);
+        }
+
+        /* Fast Moving Cyber Grid Background */
+        .grid-bg {
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(var(--grid-color) 2px, transparent 2px),
+                linear-gradient(90deg, var(--grid-color) 2px, transparent 2px);
+            background-size: 80px 80px; transform: rotateX(60deg) translateY(0);
+            transform-origin: center; animation: moveGrid 3s linear infinite;
+            z-index: 0; opacity: 0.8; pointer-events: none;
+        }
+        @keyframes moveGrid { 0% { transform: rotateX(60deg) translateY(0); } 100% { transform: rotateX(60deg) translateY(80px); } }
+
+        /* Floating Glowing Orbs */
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: 0; animation: floatOrb 15s infinite alternate ease-in-out; pointer-events: none; }
+        .orb-1 { width: 500px; height: 500px; background: var(--blue); top: 10%; left: 10%; animation-duration: 12s; }
+        .orb-2 { width: 400px; height: 400px; background: var(--orange); bottom: 10%; right: 10%; animation-duration: 18s; animation-direction: alternate-reverse; }
+        .orb-3 { width: 300px; height: 300px; background: var(--light-blue); top: 40%; left: 50%; animation-duration: 15s; }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 50px) scale(1.2); }
+            100% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Slide animations */
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 5%; text-align: center; opacity: 0; pointer-events: none;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;
+        }
+        .slide.active { opacity: 1; pointer-events: all; transform: translateY(0); z-index: 10; }
+        .slide.exit { opacity: 0; transform: translateY(-50px); z-index: 20; }
+
+        /* Clean Typography */
+        h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--text); }
+        h2 { font-size: 2.5rem; color: var(--light-blue); margin-bottom: 15px; font-weight: 700; }
+        p { font-size: 1.4rem; max-width: 900px; margin-bottom: 15px; font-weight: 500; color: var(--text); opacity: 0.9; }
+        
+        .highlight { color: var(--orange); }
+        .small-title { font-size: 1.5rem; color: var(--light-blue); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+
+        /* Levitating Animation */
+        .levitate { animation: levitate 4s ease-in-out infinite alternate; }
+        @keyframes levitate { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+
+        /* Professional Cards */
+        .card { 
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; 
+            padding: 30px; backdrop-filter: blur(15px); box-shadow: var(--shadow); 
+            transition: transform 0.3s ease, border-color 0.3s ease; 
+        }
+        .card:hover { border-color: var(--light-blue); transform: translateY(-5px); }
+        
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 900px; margin-top: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; margin-top: 20px; }
+        
+        /* Society Images Grid */
+        .society-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 30px; width: 100%; max-width: 1000px; }
+        .society-box { background: #ffffff; padding: 10px; border-radius: 12px; border: 2px solid var(--border); transition: 0.3s; display: flex; justify-content: center; align-items: center; height: 90px; }
+        .society-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .society-box:hover { transform: scale(1.1); border-color: var(--blue); box-shadow: var(--shadow); }
+
+        /* Main Button */
+        .btn-main { padding: 15px 40px; font-size: 1.5rem; font-weight: 700; background: var(--orange); color: #fff; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; font-family: 'Poppins', sans-serif; margin-top: 20px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+        .btn-main:hover { transform: scale(1.05); background: var(--blue); box-shadow: 0 4px 15px rgba(0, 98, 155, 0.4); }
+
+        /* Start Screen */
+        #start-screen { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
+        .icon-btn { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; transition: 0.2s; }
+        .icon-btn:hover { color: var(--orange); }
+
+        /* Control Bar */
+        #control-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--card-bg); border: 1px solid var(--border); padding: 10px 25px; border-radius: 50px; display: flex; gap: 20px; align-items: center; z-index: 100; backdrop-filter: blur(20px); transition: 0.5s; box-shadow: var(--shadow); }
+        #control-bar.hide { opacity: 0; transform: translate(-50%, 50px); pointer-events: none; }
+        .badge { background: var(--text); color: var(--bg); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+
+        /* Progress Bar */
+        #progress-line { position: fixed; top: 0; left: 0; height: 6px; background: var(--light-blue); width: 0%; transition: 0.4s; z-index: 100; }
+        
+        /* Auto Adjusting Image Frame */
+        .image-frame { width: auto; max-width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 10px; margin-bottom: 15px; padding: 5px; background: #ffffff; border: 2px solid var(--border); box-shadow: var(--shadow); transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <div id="author-tag">BY MANISH</div>
+    
+    <!-- Animated Background Elements -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-bg"></div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f792cb.mp3?filename=electronic-future-beats-117997.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="progress-line"></div>
+
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <div class="small-title">System Ready</div>
+        <h1>IEEE PU <span class="highlight">PRESENTATION</span></h1>
+        <button class="btn-main" onclick="startShow()">START THE SHOW</button>
+        <button class="icon-btn" onclick="toggleTheme()" style="margin-top: 30px; background: var(--card-bg); border-radius: 50%; width: 60px; height: 60px; border: 1px solid var(--border);">☀️</button>
+    </div>
+
+    <div id="presentation">
+        
+        <!-- 01: THE HOOK -->
+        <div class="slide" id="slide-1">
+            <div class="levitate" style="display: flex; gap: 30px; margin-bottom: 20px; background: #ffffff; padding: 15px 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                <img src="slide1_img1.png" height="70" alt="IEEE" onerror="this.style.display='none'">
+                <img src="slide1_img2.png" height="70" alt="Bangalore Section" onerror="this.style.display='none'">
+                <img src="slide1_img3.png" height="70" alt="PU" onerror="this.style.display='none'">
+            </div>
+            <div class="small-title">STUDENT BRANCH CHAPTERS</div>
+            <h1>WELCOME TO <span class="highlight">IEEE</span></h1>
+            <h2>PRESIDENCY UNIVERSITY</h2>
+            <div class="card" style="margin-top: 10px;">
+                <p class="type-text" data-text="Where students don't just read books. We build, compete, and lead." style="margin: 0; font-size: 1.8rem;"></p>
+            </div>
+        </div>
+
+        <!-- 02: WHAT IS IT -->
+        <div class="slide" id="slide-2">
+            <h1>WHAT IS <span class="highlight">IEEE?</span></h1>
+            <p>The largest technical network in the world. If you want to be a top engineer, start here.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.5rem; margin-bottom: 10px;">🌎 GLOBAL RESPECT</h3>
+                    <p style="font-size: 1.1rem; font-weight: normal; margin: 0;">Add this to your resume and companies worldwide will know it.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.5rem; margin-bottom: 10px;">⚡ REAL SKILLS</h3>
+                    <p style="font-size: 1.1rem; font-weight: normal; margin: 0;">Stop just studying theory. Build real projects in our labs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: WHY YOU NEED IT -->
+        <div class="slide" id="slide-3">
+            <h1>WHAT'S IN IT <span class="highlight">FOR YOU?</span></h1>
+            <p>Here is exactly what you get when you join our community.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">💸 50% DISCOUNT</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">Get a college discount on membership and events.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">🎒 EASY OD</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">Need attendance? Get easy OD allowance for activities.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">🤷 DON'T KNOW CODE?</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">You don't need to be an expert. We are here to teach you.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">🤝 ANY BRANCH</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">Not just for ECE. It is for CSE, IT, and every engineering student.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">🚀 LEADERSHIP</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">Become an Office Bearer. Show companies you can lead.</p>
+                </div>
+                <div class="card">
+                    <h3 class="highlight" style="font-size: 1.3rem;">⏱️ START NOW</h3>
+                    <p style="font-size: 1rem; font-weight: normal;">First year is the best time to start exploring.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: SOCIETIES -->
+        <div class="slide" id="slide-4">
+            <h1>FIND YOUR <span class="highlight">TEAM</span></h1>
+            <p class="type-text" data-text="We have a special group for whatever technology you love."></p>
+            <div class="society-grid">
+                <div class="society-box"><img src="slide5_img18.png" alt="CAS" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=CAS'"></div>
+                <div class="society-box"><img src="slide5_img19.png" alt="Signal Processing" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=SPS'"></div>
+                <div class="society-box"><img src="slide5_img20.png" alt="ComSoc" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=ComSoc'"></div>
+                <div class="society-box"><img src="slide5_img21.png" alt="Comp Intel" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=CIS'"></div>
+                <div class="society-box"><img src="slide5_img22.png" alt="Nano" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=NANO'"></div>
+                <div class="society-box"><img src="slide5_img23.png" alt="Sensors" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=SENSORS'"></div>
+                <div class="society-box"><img src="slide5_img24.png" alt="CEDA" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=CEDA'"></div>
+                <div class="society-box"><img src="slide5_img25.png" alt="CTSoc" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=CTSoc'"></div>
+                <div class="society-box"><img src="slide5_img26.png" alt="PELS" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=PELS'"></div>
+                <div class="society-box"><img src="slide5_img27.png" alt="IES" onerror="this.src='https://via.placeholder.com/150x80/00629B/FFF?text=IES'"></div>
+            </div>
+        </div>
+
+        <!-- 05: ACHIEVEMENTS -->
+        <div class="slide" id="slide-5">
+            <h1>WE PLAY TO <span class="highlight">WIN</span></h1>
+            <div class="card levitate" style="width: 100%; max-width: 800px; padding: 20px;">
+                <img id="ach-img" class="image-frame" src="slide7_img35.png" alt="Achievement" onerror="this.src='https://via.placeholder.com/600x300/00629B/FFFFFF?text=Achievement+Photo'">
+                <h2 id="ach-title" class="highlight type-text" data-text="Hackathon IIT-Delhi" style="margin-bottom: 5px; font-size: 2rem;"></h2>
+                <p id="ach-desc" style="font-size: 1.2rem; margin: 0;">JAN/2026</p>
+            </div>
+        </div>
+
+        <!-- 06: FUNDING -->
+        <div class="slide" id="slide-6">
+            <h1>WE FUND YOUR <span class="highlight">IDEAS</span></h1>
+            <p>Do not let your idea stop because you don't have money.</p>
+            <div style="font-size: 8rem; font-weight: 900; color: var(--light-blue); margin: 10px 0;" id="funding-count">$0</div>
+            <div class="card" style="padding: 15px 40px;">
+                <h3 class="type-text" data-text="Get up to $10,000 for projects from EPICS in IEEE." style="font-size: 1.5rem; margin: 0;"></h3>
+            </div>
+        </div>
+
+        <!-- 07: TRAVEL GRANTS -->
+        <div class="slide" id="slide-7">
+            <h1>TRAVEL FOR <span class="highlight">FREE</span></h1>
+            <p>Build a project, write a paper, and we will help pay for your travel.</p>
+            <div style="font-size: 7rem; font-weight: 900; color: var(--orange); margin: 10px 0;">$500 - $1,500</div>
+            <div class="card" style="padding: 15px 40px;">
+                <h3 class="type-text" data-text="Get Travel Grants to present at global conferences." style="font-size: 1.5rem; margin: 0;"></h3>
+            </div>
+        </div>
+
+        <!-- 08: RAPID FIRE -->
+        <div class="slide" id="slide-8">
+            <h1 style="font-size: 7rem; margin-bottom: 20px;" class="highlight" id="rapid-word">WANT TO BUILD?</h1>
+            <h2 style="font-size: 5rem; color: var(--text);">IEEE.</h2>
+        </div>
+
+        <!-- 09: END / QR -->
+        <div class="slide" id="slide-9">
+            <h1 style="font-size: 4rem;">YOUR ENGINEERING JOURNEY. <br><span class="highlight">WHAT WILL YOU BUILD?</span></h1>
+            
+            <div style="display: flex; gap: 50px; justify-content: center; margin: 30px 0; flex-wrap: wrap;">
+                
+                <!-- Registration / RSVP QR -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <h3 class="small-title" style="font-size: 1.4rem;">REGISTER HERE: AUG 19 EVENT</h3>
+                    <div class="levitate" style="background: white; padding: 15px; border-radius: 15px; border: 4px solid var(--blue); width: 220px; height: 220px; box-shadow: var(--shadow);">
+                        <img src="20.png" style="width: 100%; height: 100%; object-fit: contain;" alt="RSVP QR" onerror="this.src='https://via.placeholder.com/200x200/FFFFFF/000000?text=QR+Code'">
+                    </div>
+                </div>
+
+                <!-- Join IEEE QR -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <h3 class="small-title" style="font-size: 1.4rem; color: var(--orange);">JOIN IEEE NOW</h3>
+                    <div class="levitate" style="background: white; padding: 15px; border-radius: 15px; border: 4px solid var(--orange); width: 220px; height: 220px; box-shadow: var(--shadow); animation-delay: 1s;">
+                        <img src="slide20_img84.png" style="width: 100%; height: 100%; object-fit: contain;" alt="Join QR" onerror="this.src='https://via.placeholder.com/200x200/FFFFFF/000000?text=QR+Code'">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card" style="padding: 15px 40px;">
+                <h3 class="type-text" data-text="Scan to Register. Join IEEE. Start Early. Explore More." style="color: var(--text); font-size: 1.5rem; margin: 0;"></h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div id="control-bar">
+        <button class="icon-btn" onclick="prev()">⏮</button>
+        <button class="icon-btn" id="play-btn" onclick="togglePlay()">⏸</button>
+        <button class="icon-btn" onclick="next()">⏭</button>
+        <button class="icon-btn" onclick="replay()">↻</button>
+        <div style="width: 1px; height: 20px; background: var(--border);"></div>
+        <button class="icon-btn" onclick="toggleTheme()" title="Change Theme">☀️</button>
+        <button class="icon-btn" id="mute-btn" onclick="toggleMute()" title="Mute Music">🔊</button>
+        <div class="badge" id="mode-badge" onclick="togglePlay()">AUTO</div>
+    </div>
+
+    <script>
+        // Data & Variables
+        const totalSlides = 9;
+        let currentSlide = 1;
+        let isAutoPlay = true;
+        let slideTimer = null;
+        let isMuted = false;
+        let isDark = true;
+        let mouseTimer = null;
+        const audio = document.getElementById('bg-music');
+
+        // Timings
+        const timings = { 1: 5000, 2: 6000, 3: 8000, 4: 5000, 5: 14000, 6: 5000, 7: 5000, 8: 4500, 9: 20000 }; 
+
+        const achievements = [
+            { img: "slide7_img35.png", title: "Hackathon @ IIT-Delhi", desc: "JAN/2026" },
+            { img: "slide8_img39.jpg", title: "3rd Place CAS Design", desc: "Asia Pacific Shortlist" },
+            { img: "slide9_img44.jpg", title: "2nd Prize AI Hackathon", desc: "National Level, Vijayawada" },
+            { img: "slide10_img50.jpg", title: "1st Place I2CONECCT", desc: "Mangaluru" },
+            { img: "slide11_img54.jpg", title: "Best Project YESIST12", desc: "Finals at Malaysia" },
+            { img: "slide12_img58.jpg", title: "Top Positions PELS & IES", desc: "Presidency University" }
+        ];
+
+        // Safe Typing Effect to prevent overlap bugs
+        function runTyping() {
+            document.querySelectorAll('.slide.active .type-text').forEach(el => {
+                const text = el.getAttribute('data-text');
+                if(!text) return;
+                
+                if(el.typeInterval) clearInterval(el.typeInterval);
+                
+                el.innerText = '';
+                let i = 0;
+                
+                el.typeInterval = setInterval(() => {
+                    if (i < text.length) {
+                        el.innerHTML += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(el.typeInterval);
+                    }
+                }, 30); 
+            });
+        }
+
+        // Init
+        function startShow() {
+            document.getElementById('start-screen').style.opacity = '0';
+            document.documentElement.requestFullscreen().catch(e=>console.log(e));
+            audio.play().catch(e=>console.log(e));
+            
+            setTimeout(() => {
+                document.getElementById('start-screen').style.display = 'none';
+                goTo(1);
+            }, 500);
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            isDark = !isDark;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        }
+
+        // Slide Engine
+        function goTo(n) {
+            if (n < 1 || n > totalSlides) return;
+            
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.classList.remove('active', 'exit');
+                if (index + 1 === n) slide.classList.add('active');
+                else if (index + 1 < n) slide.classList.add('exit');
+            });
+
+            currentSlide = n;
+            document.getElementById('progress-line').style.width = ((n / totalSlides) * 100) + '%';
+            
+            runTyping();
+            if(achInterval) clearInterval(achInterval);
+            
+            if (n === 5) runAchievements();
+            if (n === 6) runFunding();
+            if (n === 8) runRapidFire();
+
+            handleAuto();
+        }
+
+        function next() { if(currentSlide < totalSlides) goTo(currentSlide + 1); }
+        function prev() { if(currentSlide > 1) goTo(currentSlide - 1); }
+        function replay() { goTo(currentSlide); }
+
+        // Slide Specific Functions
+        let achInterval;
+        function runAchievements() {
+            let i = 0;
+            const img = document.getElementById('ach-img');
+            const title = document.getElementById('ach-title');
+            const desc = document.getElementById('ach-desc');
+            
+            function updateAch() {
+                img.src = achievements[i].img; 
+                title.setAttribute('data-text', achievements[i].title);
+                desc.innerText = achievements[i].desc;
+                runTyping(); 
+                i = (i + 1) % achievements.length;
+            }
+            updateAch();
+            achInterval = setInterval(updateAch, 2300); 
+        }
+
+        function runFunding() {
+            const el = document.getElementById('funding-count');
+            let val = 0;
+            let int = setInterval(() => {
+                val += 500;
+                el.innerText = `$${val.toLocaleString()}`;
+                if(val >= 10000) clearInterval(int);
+            }, 30);
+        }
+
+        function runRapidFire() {
+            const words = ["BUILD?", "COMPETE?", "PUBLISH?", "TRAVEL?", "LEAD?"];
+            const el = document.getElementById('rapid-word');
+            let i = 0;
+            let int = setInterval(() => {
+                if (i < words.length) { 
+                    el.innerText = `WANT TO ${words[i]}`; 
+                    i++; 
+                } else { 
+                    el.innerText = "SO WHY JUST WATCH?"; 
+                    clearInterval(int); 
+                }
+            }, 700);
+        }
+
+        // Controls
+        function handleAuto() {
+            clearTimeout(slideTimer);
+            if(isAutoPlay && currentSlide < totalSlides) {
+                slideTimer = setTimeout(next, timings[currentSlide]);
+            }
+        }
+
+        function togglePlay() {
+            isAutoPlay = !isAutoPlay;
+            document.getElementById('play-btn').innerText = isAutoPlay ? '⏸' : '▶️';
+            const badge = document.getElementById('mode-badge');
+            badge.innerText = isAutoPlay ? 'AUTO' : 'MANUAL';
+            badge.style.background = isAutoPlay ? 'var(--blue)' : 'var(--orange)';
+            badge.style.color = 'white';
+            isAutoPlay ? handleAuto() : clearTimeout(slideTimer);
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            audio.muted = isMuted;
+            document.getElementById('mute-btn').innerText = isMuted ? '🔇' : '🔊';
+        }
+
+        // Show/Hide Controls
+        document.addEventListener('mousemove', () => {
+            const bar = document.getElementById('control-bar');
+            bar.classList.remove('hide');
+            clearTimeout(mouseTimer);
+            mouseTimer = setTimeout(() => { if(isAutoPlay) bar.classList.add('hide'); }, 2000);
+        });
+
+        // Keys
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+        });
+    </script>
+</body>
+</html>
